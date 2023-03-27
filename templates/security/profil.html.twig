@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil
+{% endblock %}
+
+{% block body %}
+
+
+
+	<style>
+
+		.container{
+			text-align: center;
+		}
+
+		.jumbotron {
+			text-align: center;
+		}
+
+		.card-img-top {
+			max-width: 150px;
+			max-height: 150px;
+			margin: auto;
+		}
+
+		.card {
+			margin: 20px;
+		}
+	</style>
+
+	<!DOCTYPE html>
+	<html lang="en">
+
+	<div class="jumbotron">
+			<h3 class="display-5">Consultez votre profil et vos informations personnelles </h3>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				{# <div class="col-4"> #}
+					<div class="card">
+							{% if app.user.avatar is not null %}
+							<img class="card-img-top" src="{{ asset(app.user.avatar) }}" alt="Card image cap"/>
+						{% else %}
+							<img class="card-img-top" src="{{ asset('https://robohash.org/laboresedquibusdam.png?size=50x50&set=set1') }}" alt="Card image cap"/>
+						{% endif %}
+						<div class="card-body">
+							<h4 class="card-title">Informations personnelles :</h4>
+							<h5 class="card-title">Prénom : {{ app.user.prenom }}</h5>
+							<h5 class="card-title">Nom : {{ app.user.nom }}</h5>
+							<h5 class="card-title">Mail : {{ app.user.email }}</h5>
+							<a href="{{ path('laPersonne_Modif', {'id': app.user.id}) }}" class="btn btn-outline-success">Modifier mes informations</a>
+							<a onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ?')" href="{{ path('deletePersonne', {'id':app.user.id}) }}" class="btn btn-outline-danger">Supprimer mon compte</a>
+
+						</div>
+					</div>
+				{# </div> #}
+			</div>
+		</div>
+
+	</html>
+{% endblock %}

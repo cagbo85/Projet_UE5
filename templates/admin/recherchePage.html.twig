@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rechercher
+{% endblock %}
+
+{% block body %}
+
+	<head>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<style>
+
+		.container {
+			text-align: center;
+		}
+
+		.jumbotron {
+			text-align: center;
+		}
+
+		.card-img-top {
+			max-width: 150px;
+			max-height: 150px;
+			margin: auto;
+		}
+
+		.card {
+			margin: 20px;
+		}
+
+		.form {
+			max-width: 50%;
+ 			margin: 0 auto;
+		}
+
+	</style>
+
+	<div class="jumbotron">
+		<h3 class="display-4">Vous voulez chercher une célébrité ? Allez y</h3>
+		<form id="form_login" class="form-inline my-2 my-lg-0" method="POST" action="{{ path('recherchePage') }}">
+			<input type="text" class="form-control mr-sm-2" name="nomRechercher" placeholder="Rechercher..." aria-label="Search">
+			<button class="btn btn-light" type="submit">Rechercher</button>
+		</form>
+	</div>
+	<div class="container">
+			<div class="row">
+				{% for personne in listePersonnes %}
+					<div class="col-4">
+						<div class="card">
+							{% if personne.avatar is not null %}
+								<img class="card-img-top" src="{{ asset(personne.avatar) }}" alt="Card image cap">
+							{% else %}
+								<img class="card-img-top" src="{{ asset('https://robohash.org/laboresedquibusdam.png?size=50x50&set=set1') }}" alt="Card image cap">
+							{% endif %}
+							<div class="card-body">
+								<h5 class="card-title">{{ personne.nom }}</h5>
+								<p class="card-text">{{ personne.nom }},
+									{{ personne.prenom }}</p>
+								<p class="card-text">
+									<small class="text-muted">{{ personne.email }}</small>
+								</p>
+								{% if personne == personneConnectee %}
+									<div class="card-header">
+										<a href="{{ path('laPersonne_Modif', {'id':personne.id})}}" class="btn btn-primary mr-2">Modifier mes informations</a>
+									</div>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+{% endblock %}

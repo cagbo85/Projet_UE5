@@ -1,0 +1,30 @@
+{% include 'base.html.twig' %}
+{% block body %}
+	<div class="card" style="width: 30%;text-align:center; margin-left:42%;margin-bottom: 5%;margin-top: 5%">
+		<h1 style="text-align:center;">Inscription</h1>
+		{{ form_start(InscriptionForm) }}
+		<label for="prenom">Prénom:</label>
+		{{ form_widget(InscriptionForm.prenom)}}
+		</br>
+		<label for="nom">Nom:</label>
+		{{ form_widget(InscriptionForm.nom)}}
+		</br>
+		<label for="mail">Mail:</label>
+		{{ form_widget(InscriptionForm.email)}}
+		</br>
+        <label for="avatar">Avatar:</label>
+		{{ form_widget(InscriptionForm.avatar)}}
+		</br>
+		<label for="date_naissance">Date de Naissance:</label>
+		{{ form_widget(InscriptionForm.date_naissance)}}
+		</br>
+		{# <label for="mot_de_passe">Mot de passe:</label> #}
+		{{ form_widget(InscriptionForm.mot_de_passe) }}
+		</br>
+
+		{# If you want to control the URL the user is redirected to on success
+									        <input type="hidden" name="_target_path" value="/account"/> #}
+		<button type="submit" class="btn btn-primary">S'inscrire</button>
+		{{ form_end(InscriptionForm) }}
+	</div>
+</div>{% endblock %}

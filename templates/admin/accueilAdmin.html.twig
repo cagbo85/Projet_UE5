@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}administrateur
+{% endblock %}
+
+{% block body %}
+
+<head>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+	<style>
+
+		.container {
+			text-align: center;
+
+		}
+
+		.jumbotron{
+			text-align:center;
+		}
+	</style>
+	<div class="jumbotron">
+			<h3 class="display-4">Vous êtes administrateur, attention à ne pas déraper !</h3>
+		</div>
+
+	<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Adresse email</th>
+	  <th scope="col">Modifier</th>
+	  <th scope="col">Supprimer</th>
+    </tr>
+  </thead>
+  <tbody>
+  {%for personne in listePersonnes %}
+    <tr>
+      <th scope="row">{{personne.id}}</th>
+      <td>{{personne.nom | upper}}</td>
+      <td>{{personne.prenom}}</td>
+      <td>{{personne.email}}</td>
+	  <td><a class="btn btn-outline-success" href="{{path('laPersonne_Modif', {'id':personne.id})}}" role="button">Modifier</a></td>
+	  <td><a class="btn btn-outline-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette personne ?')" href="{{ path('deletePersonne', {'id':personne.id}) }}" role="button">Supprimer</a></td>
+    </tr>
+	{% endfor %}
+  </tbody>
+</table>
+
+
+</div>{% endblock %}

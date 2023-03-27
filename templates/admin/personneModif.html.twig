@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SerieController!
+{% endblock %}
+
+{% block body %}
+	<style>
+
+		h1 {
+			text-align: center;
+			font-size: 2.5rem;
+			margin-top: 50px;
+			margin-bottom: 30px;
+		}
+
+
+		form {
+			margin: auto;
+			max-width: 500px;
+		}
+
+
+		input[type="text"],
+		input[type="email"],
+		input[type="password"],
+		input[type="date"],
+		input[type="file"],
+		label {
+			display: block;
+			width: 100%;
+			margin-bottom: 10px;
+		}
+
+
+		button[type="submit"] {
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			font-size: 1.2rem;
+			cursor: pointer;
+		}
+
+		button[type="submit"]:hover {
+			background-color: #0062cc;
+		}
+
+
+		.form-error {
+			color: red;
+			margin-top: 5px;
+		}
+	</style>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h2>Informations actuelles</h2>
+				<div class="card mb-3">
+					<div class="card-body">
+						<p class="card-text">
+							<strong>Nom :</strong>
+							{{ personne.nom }}</p>
+						<p class="card-text">
+							<strong>Prénom :</strong>
+							{{ personne.prenom }}</p>
+						<p class="card-text">
+							<strong>Date de naissance :</strong>
+							{{ personne.dateNaissance.format('d/m/Y') }}</p>
+						<p class="card-text">
+							<strong>Email :</strong>
+							{{ personne.email }}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<h2>Modifier mes informations</h2>
+				{{ form_start(monForm) }}
+				{{ form_row(monForm.prenom) }}
+				{{ form_row(monForm.nom) }}
+				{{ form_row(monForm.email) }}
+				{{ form_row(monForm.date_naissance) }}
+				{{ form_row(monForm.avatar) }}
+				{# {% if not monForm.mot_de_passe.vars.required %} #}
+					{# {{ form_row(monForm.mot_de_passe) }} #}
+				{# {% else %} #}
+					{{ form_row(monForm.mot_de_passe, {label: 'Mot de passe'}) }}
+				{# {% endif %} #}
+				{# {{ form_row(monForm.mot_de_passe, {label: 'mot_de_passe' }) }} #}
+				{{ form_row(monForm.conditions) }}
+
+				<button type="submit" class="btn">Modifier</button>
+
+				{{ form_end(monForm) }}
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

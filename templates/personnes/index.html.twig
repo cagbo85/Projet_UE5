@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des personnes
+{% endblock %}
+
+{% block body %}
+
+	<style>
+
+		.jumbotron {
+			text-align: center;
+		}
+
+		.card-img-top {
+			max-width: 150px;
+			max-height: 150px;
+			margin: auto;
+		}
+
+		.card {
+			margin: 20px;
+		}
+
+		.card-header{
+			text-align: center;
+		}
+	</style>
+	<html>
+
+		<div class="jumbotron">
+			<h1 class="display-4">Voici la liste des personnes enregistrées !</h1>
+			<small class="text-muted">Ils sont triés par ordre alphabétique suivant le nom et le prénom.
+			</small>
+		</div>
+		<div class="container">
+			<div class="row">
+				{% for personne in listePersonnes %}
+					<div class="col-4">
+						<div class="card">
+							{% if personne.avatar is not null %}
+								<img class="card-img-top" src="{{ asset(personne.avatar) }}" alt="Card image cap">
+							{% else %}
+								<img class="card-img-top" src="{{ asset('https://robohash.org/laboresedquibusdam.png?size=50x50&set=set1') }}" alt="Card image cap">
+							{% endif %}
+							<div class="card-body">
+								<h5 class="card-title">{{ personne.nom }}</h5>
+								<p class="card-text">{{ personne.nom }},
+									{{ personne.prenom }}</p>
+								<p class="card-text">
+									<small class="text-muted">{{ personne.email }}</small>
+								</p>
+								{% if personne == personneConnectee %}
+									<div class="card-header">
+										<a href="{{ path('laPersonne_Modif', {'id': app.user.id}) }}" class="btn btn-primary mr-2">Modifier mes informations</a>
+									</div>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>>
+
+
+	</html>
+{% endblock %}

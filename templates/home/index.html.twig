@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<style>
+		.jumbotron {
+			text-align: center;
+		}
+
+		hr.my-4 {
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+</style>
+
+<div class="jumbotron">
+  <h1 class="display-4">Bienvenue sur notre site !</h1>
+  <p class="lead">Ce projet a été développer par un étudiant en licence Pro Application Web.</p>
+  <hr class="my-4">
+  <p>Enjoy it !</p>
+  {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+  <p class="lead">
+    <a href="inscription" id="myHref">Cliquez ici pour vous inscrire.</a>
+  </p>
+  <p class="lead">
+    <a href="connexion" id="myHref">Déjà un compte ? Connectez vous.</a>
+  </p>
+  {% endif %}
+</div>
+{% endblock %}

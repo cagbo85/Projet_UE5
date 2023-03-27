@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SerieController!{% endblock %}
+
+{% block body %}
+
+<head>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+{%for personne in listePersonnes %}
+<div class="card" style="width: 18rem;">
+  {# <img class="card-img-top" src="{{Serie.image}}" alt=""> #}
+  <div class="card-body">
+    <h5 class="card-title">{{personne.id}}</h5>
+    <form onSubmit="return(confirm('êtes vous sur de vouloir faire cette supression'))" action="{{path('deletePersonne', {'id':personne.id})}}" method="POST">
+    {# <form action="{{path('deleteSerie', {'id':Serie.id, 'token':csrf_token('delete_serie')})}}" class="btn btn-primary">Supprimer</a> #}
+    <input type="hidden" name="_method" value="DELETE">
+    {# <input type="hidden" name="token" value="{{csrf_token('delete_personne' ~ personne.id)}}"> #}
+    <input type="submit" class="btn btn-primary" value="Supprimer">
+    </form>
+  </div>
+</div>
+    {% endfor %}
+
+</div>
+{% endblock %}

@@ -1,3 +1,17 @@
+# config/routes.yaml
+accueil:
+    path: /home
+    controller: App\Controller\HomeController::index
+
+# route par défaut
+app_homepage:
+    path: /
+    controller: App\Controller\HomeController::index
+    methods: GET
+    options:
+        expose: true
+        
+# tous les controller
 controllers:
     resource:
         path: ../src/Controller/
